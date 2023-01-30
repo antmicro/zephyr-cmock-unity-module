@@ -1,0 +1,16 @@
+menu "Unity/CMock"
+
+config UNITY
+	bool "Use Unity Test framework"
+	select REQUIRES_FULL_LIBC
+	select LOG
+	help
+	  Select this option to enable the Unity Test framework.
+
+config CMOCK
+	bool "Use the CMock mock/stub generator"
+	depends on UNITY
+	help
+	  Select this option to enable the CMock mock/stub generator.
+
+endmenu

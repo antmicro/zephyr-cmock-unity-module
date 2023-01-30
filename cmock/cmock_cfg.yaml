@@ -1,0 +1,40 @@
+# Copyright (c) 2023 Antmicro <www.antmicro.com>
+# SPDX-License-Identifier: Apache-2.0
+
+:cmock:
+  :mock_prefix: 'mock_'
+  :mock_suffix: ''
+
+  :plugins:
+    # more plugins can be found in this document:
+    # https://github.com/ThrowTheSwitch/CMock/blob/master/docs/CMock_Summary.md#generated-mock-module-summary
+    - :array
+    - :callback
+    - :expect_any_args
+    - :ignore
+    - :ignore_arg
+    - :return_thru_ptr
+
+  :callback_after_arg_check: true
+  :exclude_setjmp_h: true
+  :when_ptr: :compare_data
+
+  :strippables:
+    - '#include\s+<syscalls/\w+?.h>.*'
+    - '(?:__attribute__\s*\(+.*?\)+)'
+    - 'ALWAYS_INLINE'
+    - 'BUILD_ASSERT\(.+\);.*'
+    - 'FUNC_NORETURN'
+    - 'FUNC_NORETURN\s+.*'
+    - '__STATIC_INLINE\s+.*'
+    - '__attribute_const__\s+.*'
+    - '__deprecated\s+.*'
+    - '__printf_like\(.+\).*'
+    - '__syscall\s+.*'
+    - 'ifdef\s+CONFIG_USERSPACE\s+.*'
+    - 'static\s+ALWAYS_INLINE\s+.*'
+    - 'static\s+inline\s+.*'
+
+  :treat_inlines: :include
+  :treat_externs: :include
+  :weak: '__attribute ((weak))'
