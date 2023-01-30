@@ -1,0 +1,13 @@
+# Copyright (c) 2023 Antmicro <www.antmicro.com>
+# SPDX-License-Identifier: Apache-2.0
+
+:unity:
+    :suite_teardown: >
+      extern int suite_teardown(int); return suite_teardown(num_failures);
+    :main_name: unity_main
+    :includes:
+      - zephyr/kernel.h
+      - zephyr/sys/printk.h
+      - zephyr/logging/log.h
+      - unity.h
+    :enforce_strict_ordering: true

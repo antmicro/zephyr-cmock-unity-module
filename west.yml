@@ -15,10 +15,10 @@ manifest:
       revision: v3.2.0
       import: true
     - name: cmock
-      path: cmock
+      path: test/cmock
       remote: throwtheswitch
       revision: v2.5.3
     - name: unity
-      path: cmock/vendor/unity
+      path: test/cmock/vendor/unity
       remote: throwtheswitch
       revision: v2.5.2

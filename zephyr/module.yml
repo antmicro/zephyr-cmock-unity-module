@@ -1,0 +1,7 @@
+# Copyright (c) 2023 Antmicro <www.antmicro.com>
+# SPDX-License-Identifier: Apache-2.0
+
+name: cmock_unity_integration
+build:
+  kconfig: Kconfig
+  cmake: .
