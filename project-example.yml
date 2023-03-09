@@ -1,0 +1,22 @@
+manifest:
+  self:
+    path: zephyr-cmock-unity-module
+
+  remotes:
+    - name: zephyrproject-rtos
+      url-base: https://github.com/zephyrproject-rtos
+    - name: antmicro
+      url-base: https://github.com/antmicro
+
+  projects:
+    - name: zephyr
+      path: zephyr
+      remote: zephyrproject-rtos
+      revision: v3.3.0
+      import: true
+
+    - name: zephyr-cmock-unity-module
+      path: cmock-unity-module
+      remote: antmicro
+      revision: main
+      import: true

@@ -3,7 +3,8 @@
 Copyright (c) 2023 [Antmicro](https://www.antmicro.com)
 
 This Zephyr module provides an integration with CMock mock generator and the
-Unity Test framework.
+Unity Test framework. For a more in-depth test creation description using this
+module refer to [this document](CREATING_TESTS.md).
 
 ## Installation
 
@@ -38,9 +39,14 @@ Setup Python dependencies:
 pip3 install -r requirements.txt
 ```
 
-Setup Zephyr RTOS:
+An example project manifest that uses this module is provided in
+`project-example.yml`. To use it, type:
 ```
-west init -l .
+west init --local --mf project-example.yml
+```
+
+Next, set Zephyr RTOS and its dependencies up:
+```
 west update
 west zephyr-export
 pip3 install -r ../zephyr/scripts/requirements.txt
