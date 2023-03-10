@@ -11,6 +11,7 @@ module refer to [this document](CREATING_TESTS.md).
 This instruction was tested on Debian Bookworm and Ubuntu 22.04. Install
 dependencies:
 
+<!-- name="install-dependencies" -->
 ```
 apt install cmake git ninja-build gperf ccache dfu-util device-tree-compiler \
 	wget python3-dev python3-pip python3-setuptools python3-tk python3-wheel \
@@ -19,6 +20,8 @@ apt install cmake git ninja-build gperf ccache dfu-util device-tree-compiler \
 ```
 
 Setup Zephyr SDK:
+
+<!-- name="zephyr-sdk-setup" -->
 ```
 mkdir -p zephyr-sdk
 pushd zephyr-sdk
@@ -35,17 +38,23 @@ cd zephyr-cmock-unity-module
 ```
 
 Setup Python dependencies:
+
+<!-- name="python-requirements" -->
 ```
 pip3 install -r requirements.txt
 ```
 
 An example project manifest that uses this module is provided in
 `project-example.yml`. To use it, type:
+
+<!-- name="west-init" -->
 ```
 west init --local --mf project-example.yml
 ```
 
 Next, set Zephyr RTOS and its dependencies up:
+
+<!-- name="west-update" -->
 ```
 west update
 west zephyr-export
@@ -55,6 +64,8 @@ pip3 install -r ../zephyr/scripts/requirements.txt
 ## Samples
 
 You can build and run samples with:
+
+<!-- name="west-build" -->
 ```
 west build -p -b native_posix tests/unity -t run
 west build -p -b native_posix tests/cmock -t run
