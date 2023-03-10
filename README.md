@@ -13,10 +13,11 @@ dependencies:
 
 <!-- name="install-dependencies" -->
 ```
-apt install cmake git ninja-build gperf ccache dfu-util device-tree-compiler \
+apt update
+apt install -y cmake git ninja-build gperf ccache dfu-util device-tree-compiler \
 	wget python3-dev python3-pip python3-setuptools python3-tk python3-wheel \
 	xz-utils file make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1 curl \
-	ruby clang-14
+	ruby
 ```
 
 Setup Zephyr SDK:

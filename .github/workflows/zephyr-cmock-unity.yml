@@ -1,0 +1,20 @@
+name: zephyr-cmock-unity-tests
+run-name: Testing Zephyr CMock/Unity integration module
+on: [push, pull_request]
+jobs:
+  Run-Tests:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - run: pip install git+https://github.com/antmicro/tuttest.git
+    - run: tuttest README.md install-dependencies | sudo bash -
+    - run: tuttest README.md zephyr-sdk-setup | sudo bash -
+    - run: tuttest README.md python-requirements | sudo bash -
+    - run: tuttest README.md west-init | sudo bash -
+    - run: tuttest README.md west-update | sudo bash -
+    - run: tuttest README.md west-build | sudo bash -
+
