@@ -50,14 +50,14 @@ function(cmock_handle header_file category)
 
     # find CMock YAML configuration file
     get_property(CMOCK_UNITY_MODULE_CMOCK_BASE GLOBAL PROPERTY CMOCK_UNITY_MODULE_CMOCK_BASE)
-    set(cmock_config ${CMOCK_UNITY_MODULE_CMOCK_BASE}/cmock_cfg.yaml)
-    message(STATUS "Found CMock YAML configuration file: ${cmock_config}")
+    set(CMOCK_CONFIG ${CMOCK_UNITY_MODULE_CMOCK_BASE}/cmock_cfg.yaml CACHE FILEPATH "Path to custom cmock config file")
+    message(STATUS "Found CMock YAML configuration file: ${CMOCK_CONFIG}")
 
     # run the `cmock.rb` script
     message(STATUS "Running cmock.rb script for ${header_file}...")
     execute_process(COMMAND ${ruby} ${cmock}
         --mock_path=${cmock_output_base}
-        -o${cmock_config}
+        -o${CMOCK_CONFIG}
 	${header_file}
         WORKING_DIRECTORY ${APPLICATION_SOURCE_DIR}
         RESULT_VARIABLE cmock_result
