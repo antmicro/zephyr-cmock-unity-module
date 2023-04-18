@@ -24,7 +24,8 @@ function(cmock_handle header_file category)
     get_filename_component(header_file_basename_we ${header_file} NAME_WE)
 
     # set CMock output directory to `build/cmock/<category>`
-    set(cmock_output_base ${APPLICATION_BINARY_DIR}/cmock/${category})
+    set(cmock_base ${APPLICATION_BINARY_DIR}/cmock)
+    set(cmock_output_base ${cmock_base}/${category})
     file(MAKE_DIRECTORY ${cmock_output_base})
     message(STATUS "Created CMock output directory: ${cmock_output_base}")
 
@@ -56,6 +57,6 @@ function(cmock_handle header_file category)
         message(FATAL_ERROR "CMock mock/stub generator: bad exit status!")
     endif()
 
-    target_include_directories(app BEFORE PRIVATE ${cmock_output_base})
+    target_include_directories(app BEFORE PRIVATE ${cmock_base})
     target_sources(app PRIVATE ${cmock_output_base}/mock_${header_file_basename_we}.c)
 endfunction()

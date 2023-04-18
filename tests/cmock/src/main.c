@@ -1,4 +1,4 @@
-#include "mock_gpio.h"
+#include "drivers/mock_gpio.h"
 
 void test_cmock(void)
 {
