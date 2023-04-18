@@ -19,6 +19,16 @@ zephyr_library_sources(
     ${CMOCK_BASE}/src/cmock.c
 )
 
+# Mocked header is stripped from `syscall` and `inline` attributes, the same must be done with source headers
+function(sanitize_source_header header_path)
+    message(STATUS "Sanitizing source header file: ${header_path}")
+    execute_process(COMMAND sed -i "s/__syscall //g" ${header_path})
+    execute_process(COMMAND sed -i "s/static inline //g" ${header_path})
+    execute_process(COMMAND sed -i "s/inline static //g" ${header_path})
+    execute_process(COMMAND sed -i "s/ALWAYS_INLINE //g" ${header_path})
+    execute_process(COMMAND sed -i "/include <syscalls.*h>/d" ${header_path})
+endfunction()
+
 function(cmock_handle header_file category)
     # get header_file basename
     get_filename_component(header_file_basename_we ${header_file} NAME_WE)
@@ -57,6 +67,7 @@ function(cmock_handle header_file category)
         message(FATAL_ERROR "CMock mock/stub generator: bad exit status!")
     endif()
 
+    sanitize_source_header(${cmock_output_base}/${header_file_basename_we}.h)
     target_include_directories(app BEFORE PRIVATE ${cmock_base})
     target_sources(app PRIVATE ${cmock_output_base}/mock_${header_file_basename_we}.c)
 endfunction()
