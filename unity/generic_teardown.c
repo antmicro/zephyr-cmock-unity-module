@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include <zephyr/logging/log.h>
-LOG_MODULE_REGISTER(unity, LOG_LEVEL_INF);
+#include <zephyr/kernel.h>
 
 #ifdef CONFIG_ARCH_POSIX
 #include "posix_board_if.h"
@@ -20,9 +19,9 @@ __weak int __unused suite_teardown(int num_failures)
 	}
 
 	if (exit_code == 0) {
-		LOG_INF("PROJECT EXECUTION SUCCESSFUL");
+		printk("unity: PROJECT EXECUTION SUCCESSFUL\n");
 	} else {
-		LOG_INF("PROJECT EXECUTION FAILED");
+		printk("unity: PROJECT EXECUTION FAILED\n");
 	}
 
 
