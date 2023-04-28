@@ -3,7 +3,6 @@ menu "Unity/CMock"
 config UNITY
 	bool "Use Unity Test framework"
 	select REQUIRES_FULL_LIBC
-	select LOG
 	help
 	  Select this option to enable the Unity Test framework.
 
