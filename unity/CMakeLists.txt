@@ -14,9 +14,12 @@ zephyr_compile_definitions(UNITY_INCLUDE_CONFIG_H)
 
 # add Unity Test Runner sources as a part of this library
 zephyr_library()
+
+# There migth be a custom unity_config.h file in which case the local one should not be included
+set(UNITY_CONFIG_HEADER_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE FILEPATH "Path to directory with a custom unity_config.h file")
 zephyr_include_directories(
     ${UNITY_BASE}/src
-    ${CMAKE_CURRENT_LIST_DIR}
+    ${UNITY_CONFIG_HEADER_DIR}
 )
 zephyr_library_sources(
     ${UNITY_BASE}/src/unity.c
