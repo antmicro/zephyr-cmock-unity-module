@@ -32,12 +32,12 @@ function(test_runner_generate test_file)
     get_property(CMOCK_UNITY_MODULE_BASE GLOBAL PROPERTY CMOCK_UNITY_MODULE_BASE)
     set(cmock_unity_project_root ${CMOCK_UNITY_MODULE_BASE}/..)
     set(unity_generator ${cmock_unity_project_root}/test/cmock/vendor/unity/auto/generate_test_runner.rb)
-    message(STATUS "Found Unty Test Runner generator script: ${unity_generator}")
+    message(STATUS "Found Unity Test Runner generator script: ${unity_generator}")
 
     # get path to the Unity Test Runner generator YAML configuration file
     get_property(CMOCK_UNITY_MODULE_UNITY_BASE GLOBAL PROPERTY CMOCK_UNITY_MODULE_UNITY_BASE)
-    set(unity_generator_config ${CMOCK_UNITY_MODULE_UNITY_BASE}/unity_cfg.yaml)
-    message(STATUS "Found Unty Test Runner generator YAML config file: ${unity_generator_config}")
+    set(UNITY_CONFIG ${CMOCK_UNITY_MODULE_UNITY_BASE}/unity_cfg.yaml CACHE FILEPATH "Path to custom unity config file")
+    message(STATUS "Found Unity Test Runner generator YAML config file: ${UNITY_CONFIG}")
 
     # set Test Runner output directory to `build/unity`
     set(unity_output_base ${APPLICATION_BINARY_DIR}/unity)
@@ -51,7 +51,7 @@ function(test_runner_generate test_file)
 
     # run Unity Test Runner generator script
     message(STATUS "Running Unity Test Runner Generator for ${test_file}...")
-    execute_process(COMMAND ${ruby} ${unity_generator} ${unity_generator_config} ${test_file} ${unity_generated_runner}
+    execute_process(COMMAND ${ruby} ${unity_generator} ${UNITY_CONFIG} ${test_file} ${unity_generated_runner}
         WORKING_DIRECTORY ${APPLICATION_SOURCE_DIR}
         RESULT_VARIABLE generator_result
         OUTPUT_VARIABLE generator_output)
