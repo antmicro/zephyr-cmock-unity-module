@@ -79,6 +79,15 @@ west build -p -b <platform_name> tests/cmock -t run_renode
 ```
 Where `<platform_name>` is the Zephyr platform of your choice.
 
+## Configuration options
+
+You can use custom configs by setting below CMake variables
+| Variable name | Description |
+|---------------|------------|
+| CMOCK_CONFIG | Path to custom `cmock_cfg.yaml` config file |
+| UNITY_CONFIG | Path to custom `unity_cfg.yaml` config file |
+| UNITY_CONFIG_HEADER_DIR | Path to directory with a custom `unity_config.h` file |
+
 ## Twister
 
 Tests located under the `tests` directory support Zephyr's `twister` script. To
